@@ -1,5 +1,9 @@
 export const adminMenu = [
   {
+    title: "Add User",
+    path: "/dashboard/adduser",
+  },
+  {
     title: "Add vehical",
     path: "/dashboard/addVehical",
   },
