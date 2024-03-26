@@ -19,6 +19,13 @@ export const adminMenu = [
 export const stsManagerMenu = [
   {
     title: "Add Entry",
-    path: "/dashboard/addEntry",
+    path: "/dashboard/sts/addEntry",
+  },
+];
+
+export const landfilManagerMenu = [
+  {
+    title: "Add Entry",
+    path: "/dashboard/landfil/addEntry",
   },
 ];

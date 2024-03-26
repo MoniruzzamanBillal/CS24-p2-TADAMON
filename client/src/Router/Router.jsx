@@ -7,6 +7,7 @@ import AddSts from "../Pages/System admin/AddSts";
 import AddLandFil from "../Pages/System admin/AddLandFil";
 import AddUser from "../Pages/System admin/AddUser";
 import AddStsEntry from "../Pages/STS manager/AddStsEntry";
+import AddLandfilEntry from "../Pages/Landfil Manager/AddLandfilEntry";
 
 export const Routes = createBrowserRouter([
   {
@@ -38,8 +39,12 @@ export const Routes = createBrowserRouter([
         element: <AddLandFil />,
       },
       {
-        path: "/dashboard/addEntry",
+        path: "/dashboard/sts/addEntry",
         element: <AddStsEntry />,
+      },
+      {
+        path: "/dashboard/landfil/addEntry",
+        element: <AddLandfilEntry />,
       },
     ],
   },
