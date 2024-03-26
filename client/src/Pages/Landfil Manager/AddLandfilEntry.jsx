@@ -33,7 +33,7 @@ const AddLandfilEntry = () => {
 
   return (
     <div className="AddLandfilEntryContainer">
-      <div className="AddLandfilEntryWraper bg-gray-100   bgImage flex justify-center items-center py-6 ">
+      <div className="AddLandfilEntryWraper bg-gray-100    flex justify-center items-center py-6 ">
         {/* vehical entry card starts  */}
         <div className="addCarEntryCard bg-white  shadow-2xl  py-9 px-4 w-[94%] xsm:w-[88%] sm:w-[81%] md:w-[76%] xmd:w-[68%] lg:w-[56%] rounded-md border border-gray-300  ">
           <h1 className="mb-4 text-xl font-bold text-center  xsm:text-2xl md:text-3xl sm:mb-6 md:mb-8 lg:mb-10">
