@@ -1,11 +1,12 @@
 // importing libraries:
 import { useState } from "react";
-import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 // importing icons:
 import { FaCode } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { IoIosHome } from "react-icons/io";
+import { adminMenu } from "../Util/ConstantData";
 
 // user menu
 const userMenu = [
@@ -25,7 +26,7 @@ const Dashboard = () => {
   const [isSidebarActive, setIsSidebarActive] = useState(false);
 
   return (
-    <section className="relative flex justify-end  ">
+    <section className="relative flex justify-end    ">
       {/* sidebar container starts  */}
       <div
         className={` SideBarContainer fixed top-0 ${
@@ -56,35 +57,30 @@ const Dashboard = () => {
 
           <Link
             to={"/"}
-            className={`flex rounded-md mt-10 py-3 px-2 cursor-pointer text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center gap-x-4 bg-[#fff3]`}
+            className={`flex rounded-md mt-10 py-3 px-4 cursor-pointer text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center  bg-[#fff3]`}
           >
-            <div className="text-lg icon">
-              {" "}
-              <IoIosHome />{" "}
-            </div>
             <h1 className={` gap-1  origin-left duration-200 w-full `}>Home</h1>
           </Link>
 
           <div className="mt-2 sidebarList">
             {/*  */}
 
-            {/* normal user side links  */}
+            {/* Admin side links  */}
 
-            {userMenu &&
-              userMenu.map((ele, ind) => (
+            {adminMenu &&
+              adminMenu.map((ele, ind) => (
                 <NavLink
                   to={ele.path}
                   key={ind}
-                  className={`flex rounded-md py-3 px-2 cursor-pointer bg-[#fff3] text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center gap-x-4 mb-2`}
+                  className={`flex rounded-md py-3 px-4 cursor-pointer bg-[#fff3] text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center  mb-2`}
                 >
-                  <div className="text-lg icon">{ele.icon}</div>
                   <h1 className={` gap-1  origin-left duration-200 w-full `}>
                     {ele.title}
                   </h1>
                 </NavLink>
               ))}
 
-            {/* normal user side links ends  */}
+            {/* admin side links ends  */}
 
             {/*  */}
           </div>
@@ -120,7 +116,7 @@ const Dashboard = () => {
       {/* hamburger emnu ends  */}
 
       {/* sidebar child component starts  */}
-      <div className="w-[100%] md:w-[calc(100%-16rem)]  ">
+      <div className="w-[100%] md:w-[calc(100%-16rem)] pl-2 pt-1  ">
         <Outlet />
       </div>
 

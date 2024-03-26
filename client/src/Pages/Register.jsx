@@ -13,6 +13,19 @@ const Register = () => {
     reset,
   } = useForm();
 
+  // Function to validate the password
+  const isPasswordValid = (password) => {
+    const minLength = 6;
+    const hasCapitalLetter = /[A-Z]/.test(password);
+    const hasSpecialCharacter = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(
+      password
+    );
+
+    return (
+      password.length >= minLength && hasCapitalLetter && hasSpecialCharacter
+    );
+  };
+
   // registration function
   const handleRegister = async (data) => {
     const userEmail = data?.email;
