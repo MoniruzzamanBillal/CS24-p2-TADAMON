@@ -4,8 +4,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const AddLandFil = () => {
-  const [startDate, setStartDate] = useState(new Date());
-
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
 
@@ -32,7 +30,7 @@ const AddLandFil = () => {
   //   console.log(startDate);
   const hours1 = startTime.getHours();
   const startHour12 = hours1 % 12 || 12;
-  const startMinutes = startDate.getMinutes();
+  const startMinutes = startTime.getMinutes();
   const startAmpm = hours1 >= 12 ? "PM" : "AM";
 
   const hours2 = endTime.getHours();

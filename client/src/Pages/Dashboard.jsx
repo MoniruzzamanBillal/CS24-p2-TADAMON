@@ -3,24 +3,7 @@ import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 
 // importing icons:
-import { FaCode } from "react-icons/fa";
-import { CgProfile } from "react-icons/cg";
-import { IoIosHome } from "react-icons/io";
-import { adminMenu } from "../Util/ConstantData";
-
-// user menu
-const userMenu = [
-  {
-    title: "Title 1",
-    path: "/dashboard",
-    icon: <CgProfile />,
-  },
-  {
-    title: "Title 2",
-    path: "/dashboard",
-    icon: <FaCode />,
-  },
-];
+import { adminMenu, stsManagerMenu } from "../Util/ConstantData";
 
 const Dashboard = () => {
   const [isSidebarActive, setIsSidebarActive] = useState(false);
@@ -62,25 +45,38 @@ const Dashboard = () => {
             <h1 className={` gap-1  origin-left duration-200 w-full `}>Home</h1>
           </Link>
 
-          <div className="mt-2 sidebarList">
+          <div className="mt-3 sidebarList">
             {/*  */}
 
             {/* Admin side links  */}
-
-            {adminMenu &&
+            {/* {adminMenu &&
               adminMenu.map((ele, ind) => (
                 <NavLink
                   to={ele.path}
                   key={ind}
-                  className={`flex rounded-md py-3 px-4 cursor-pointer bg-[#fff3] text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center  mb-2`}
+                  className={`flex rounded-md py-3 px-4 cursor-pointer bg-[#fff3] text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center  mb-3`}
+                >
+                  <h1 className={` gap-1  origin-left duration-200 w-full `}>
+                    {ele.title}
+                  </h1>
+                </NavLink>
+              ))} */}
+            {/* admin side links ends  */}
+
+            {/* sts manager menu starts  */}
+            {stsManagerMenu &&
+              stsManagerMenu.map((ele, ind) => (
+                <NavLink
+                  to={ele.path}
+                  key={ind}
+                  className={`flex rounded-md py-3 px-4 cursor-pointer bg-[#fff3] text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center  mb-3`}
                 >
                   <h1 className={` gap-1  origin-left duration-200 w-full `}>
                     {ele.title}
                   </h1>
                 </NavLink>
               ))}
-
-            {/* admin side links ends  */}
+            {/* sts manager menu ends  */}
 
             {/*  */}
           </div>

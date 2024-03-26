@@ -16,3 +16,9 @@ export const adminMenu = [
     path: "/dashboard/addLandfill",
   },
 ];
+export const stsManagerMenu = [
+  {
+    title: "Add Entry",
+    path: "/dashboard/addEntry",
+  },
+];

@@ -6,6 +6,7 @@ import AddVehical from "../Pages/System admin/AddVehical";
 import AddSts from "../Pages/System admin/AddSts";
 import AddLandFil from "../Pages/System admin/AddLandFil";
 import AddUser from "../Pages/System admin/AddUser";
+import AddStsEntry from "../Pages/STS manager/AddStsEntry";
 
 export const Routes = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const Routes = createBrowserRouter([
       {
         path: "/dashboard/addLandfill",
         element: <AddLandFil />,
+      },
+      {
+        path: "/dashboard/addEntry",
+        element: <AddStsEntry />,
       },
     ],
   },
