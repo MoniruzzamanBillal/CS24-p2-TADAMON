@@ -4,6 +4,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import AddVehical from "../Pages/System admin/AddVehical";
 import AddSts from "../Pages/System admin/AddSts";
+import AddLandFil from "../Pages/System admin/AddLandFil";
 
 export const Routes = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const Routes = createBrowserRouter([
       {
         path: "/dashboard/addSts",
         element: <AddSts />,
+      },
+      {
+        path: "/dashboard/addLandfill",
+        element: <AddLandFil />,
       },
     ],
   },
