@@ -1,4 +1,5 @@
 const { Schema } = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const UserSchema = new Schema({
 	username: {
@@ -12,9 +13,17 @@ const UserSchema = new Schema({
 	},
 	roles: {
 		type: Array,
-		default: [],
+		default: ["Unassigned"],
 		required: true,
 	}
+});
+
+UserSchema.pre('save', async function (next) {
+	if (this.isModified('password')) {
+		const salt = await bcrypt.genSalt(9);
+		this.password = await bcrypt.hash(this.password, salt);
+	}
+	next();
 });
 
 const UserResponses = {
