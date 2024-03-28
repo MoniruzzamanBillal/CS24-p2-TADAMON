@@ -23,3 +23,13 @@
   padding: 0.5rem 1.4rem;
   border-radius: 0.38rem;
 }
+
+/* Add this CSS to your stylesheets */
+.truckLists {
+  scrollbar-width: thin; /* Set the width of the scrollbar */
+}
+
+/* For WebKit browsers (Chrome, Safari) */
+.truckLists::-webkit-scrollbar {
+  width: 8px;
+}

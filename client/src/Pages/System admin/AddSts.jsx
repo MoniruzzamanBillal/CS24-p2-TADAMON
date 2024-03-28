@@ -1,6 +1,19 @@
 import { useForm } from "react-hook-form";
+import TruckList from "../../Component/SystemAdmiin/TruckList";
+import { useState } from "react";
+
+const truckLists = [
+  { id: 0, name: "dump truck 1", reg: "12345678" },
+  { id: 1, name: "dump truck 2", reg: "123456456" },
+  { id: 2, name: "dump truck 3", reg: "123456dfgh456" },
+  { id: 3, name: "dump truck 4", reg: "12345dfg6456" },
+  { id: 4, name: "dump truck 5", reg: "12345sdf6456" },
+];
 
 const AddSts = () => {
+  const [showTruckList, setShowTruckList] = useState(false);
+  const [trucks, setTrucks] = useState([]);
+
   const {
     register,
     handleSubmit,
@@ -11,12 +24,20 @@ const AddSts = () => {
   // function for adding sts
   const handleStsAdd = (data) => {
     console.log("add sts click");
+    console.log(trucks);
 
     const stsWardNumber = data?.stsWardNo;
     const STSCapacity = data?.stsCapacity;
 
     console.log(stsWardNumber);
     console.log(STSCapacity);
+  };
+
+  // function for adding trucks in "trucks" state
+  const handleAddTruck = (id, name) => {
+    let prevTrucks = [...trucks];
+    prevTrucks.push(name);
+    setTrucks(prevTrucks);
   };
 
   return (
@@ -40,7 +61,7 @@ const AddSts = () => {
                 {...register("stsWardNo", {
                   required: "STS ward Number is required",
                 })}
-                className={`block w-full m-auto  border bg-gray-50 border-gray-400     text-gray-900 text-sm rounded   p-2.5 outline-none`}
+                className={`  block w-full m-auto  border bg-gray-50 border-gray-400     text-gray-900 text-sm rounded   p-2.5 outline-none`}
                 placeholder="Enter STS Ward number"
               />
 
@@ -115,6 +136,53 @@ const AddSts = () => {
               {/* gps Longitude input ends  */}
             </div>
             {/* gps co ordinates input ends  */}
+
+            {/* add truck input section  starts  */}
+            <div className="addTructContainer  relative  ">
+              <h1
+                className="  text-lg cursor-pointer inline-block font-semibold  "
+                onClick={() => setShowTruckList(!showTruckList)}
+              >
+                Add truck +
+              </h1>
+
+              {/* truck lists section starts  */}
+
+              {showTruckList && (
+                <div
+                  className="truckLists absolute top-[1.7rem] left-[4rem] bg-gray-200 py-2 px-3 rounded shadow-md h-[16rem] overflow-auto  "
+                  onClick={() => setShowTruckList(!showTruckList)}
+                >
+                  {truckLists &&
+                    truckLists?.map((truck, ind) => (
+                      <TruckList
+                        key={ind}
+                        truck={truck}
+                        trucks={trucks}
+                        setTrucks={setTrucks}
+                        handleAddTruck={handleAddTruck}
+                      />
+                    ))}
+                </div>
+              )}
+              {/* truck lists section ends  */}
+
+              {/* selected truck lists starts  */}
+              <div className="selectedTruck  mt-2 ">
+                <h1 className=" font-medium mb-.5 ">selected trucks : </h1>
+                {trucks &&
+                  trucks?.map((selectedTruck, ind) => (
+                    <div className="selectedTrucks" key={ind}>
+                      <h1>
+                        <span className=" font-semibold "> {ind + 1}.</span>{" "}
+                        {selectedTruck}
+                      </h1>
+                    </div>
+                  ))}
+              </div>
+              {/* selected truck lists end s */}
+            </div>
+            {/* add truck input section ends   */}
 
             <button
               disabled={isSubmitting}
