@@ -13,8 +13,12 @@ export const adminMenu = [
     path: "/dashboard/addSts",
   },
   {
-    title: "Add Landfill ",
+    title: "Add Landfill",
     path: "/dashboard/addLandfill",
+  },
+  {
+    title: "Statistics",
+    path: "/dashboard/statistics",
   },
 ];
 
