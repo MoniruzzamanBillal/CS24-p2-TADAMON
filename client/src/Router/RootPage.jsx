@@ -1,26 +1,25 @@
 import { Outlet } from "react-router-dom";
+import NavBar from "../Component/Shared/NavBar";
+import Footer from "../Component/Shared/Footer";
 
 const RootPage = () => {
   return (
     <div className="RootPageContainer">
       {/* nav container  */}
       <div className="navContainer ">
-        <h1>nav bar </h1>
-        <h1>nav bar </h1>
-        <h1>nav bar </h1>
+        <NavBar />
       </div>
       {/* nav container ends  */}
 
       {/* children components starts  */}
-      <div className="childComponents">
+      <div className="childComponents  pt-[4.4rem] ">
         <Outlet />
       </div>
       {/* children components ends  */}
 
       {/* footer container starts  */}
       <div className="footerContainer">
-        <h1>footer</h1>
-        <h1>footer</h1>
+        <Footer />
       </div>
       {/* footer container ends  */}
     </div>

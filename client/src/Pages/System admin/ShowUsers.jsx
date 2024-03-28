@@ -70,7 +70,7 @@ const ShowUsers = () => {
           <h1 className=" text-xl font-medium mb-4  ">User List : </h1>
 
           {/* user container starts */}
-          <div className="userContainer  ">
+          <div className="userContainer   ">
             <UserList />
           </div>
           {/* user container ends */}

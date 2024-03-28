@@ -22,7 +22,7 @@ export const adminMenu = [
 export const stsManagerMenu = [
   {
     title: "Add Entry",
-    path: "/dashboard/sts/addEntry",
+    path: "/dashboard/sts/addEntry ",
   },
 ];
 //

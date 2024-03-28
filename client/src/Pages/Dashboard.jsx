@@ -84,17 +84,17 @@ const Dashboard = () => {
 
             {/* landfil manager menu starts  */}
             {/* {landfilManagerMenu &&
-              landfilManagerMenu.map((ele, ind) => (
-                <NavLink
-                  to={ele.path}
-                  key={ind}
-                  className={`flex rounded-md py-3 px-4 cursor-pointer bg-[#fff3] text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center  mb-3`}
-                >
-                  <h1 className={` gap-1  origin-left duration-200 w-full `}>
-                    {ele.title}
-                  </h1>
-                </NavLink>
-              ))} */}
+            landfilManagerMenu.map((ele, ind) => (
+              <NavLink
+                to={ele.path}
+                key={ind}
+                className={`flex rounded-md py-3 px-4 cursor-pointer bg-[#fff3] text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center  mb-3`}
+              >
+                <h1 className={` gap-1  origin-left duration-200 w-full `}>
+                  {ele.title}
+                </h1>
+              </NavLink>
+            ))} */}
             {/* landfil manager menu ends  */}
 
             {/*  */}

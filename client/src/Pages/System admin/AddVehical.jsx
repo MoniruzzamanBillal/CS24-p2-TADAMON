@@ -27,14 +27,14 @@ const AddVehical = () => {
     <div className="addVehicalContainer">
       <div className="addVehicalWrapper bg-gray-100  h-screen  bgImage flex justify-center items-center   ">
         {/* add vehical card starts  */}
-        <div className="addVehicalCard bg-white  shadow-2xl  py-9 px-4 w-[94%] xsm:w-[88%] sm:w-[81%] md:w-[76%] xmd:w-[68%] lg:w-[56%] rounded-md border border-gray-300   ">
+        <div className="addVehicalCard bg-white  shadow-2xl  py-9 px-4 w-[94%] xsm:w-[90%] sm:w-[88%] md:w-[86%] xmd:w-[78%] lg:w-[70%] rounded-md border border-gray-300   ">
           <h1 className="mb-4 text-xl font-bold text-center  xsm:text-2xl md:text-3xl sm:mb-6 md:mb-8 lg:mb-10">
             Add vehical
           </h1>
 
           <form
             onSubmit={handleSubmit(handleAddVehical)}
-            className=" w-[92%] xsm:w-[80%] sm:w-[76%] md:w-[72%] m-auto flex flex-col gap-4 xsm:gap-5 sm:gap-6 md:gap-7 lg:gap-8  "
+            className=" w-[92%]  sm:w-[88%] md:w-[92%] xmd:w-[90%] lg:w-[84%] xl:w-[78%] m-auto flex flex-col gap-4 xsm:gap-5 sm:gap-6 md:gap-7 lg:gap-8  "
           >
             {/* vehical numver input  */}
             <div className="vehicalRegistrationNumberInput">

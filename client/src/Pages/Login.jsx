@@ -101,15 +101,6 @@ const Login = () => {
               )}
             </button>
           </form>
-
-          <div className="mt-4 text-sm text-center registerDivert sm:text-base md:text-lg ">
-            <p>
-              Don't have an account ?{" "}
-              <span className="text-blue-500 logoFont">
-                <Link to={"/register"}>Register here</Link>{" "}
-              </span>
-            </p>
-          </div>
         </div>
       </div>
       <ToastContainer />
