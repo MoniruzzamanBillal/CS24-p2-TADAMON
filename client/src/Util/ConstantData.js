@@ -3,10 +3,7 @@ export const adminMenu = [
     title: "Manage users",
     path: "/dashboard/manageUser",
   },
-  {
-    title: "Add User",
-    path: "/dashboard/adduser",
-  },
+
   {
     title: "Add vehical",
     path: "/dashboard/addVehical",

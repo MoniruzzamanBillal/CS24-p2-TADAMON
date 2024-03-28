@@ -131,7 +131,7 @@ const Dashboard = () => {
       {/* hamburger emnu ends  */}
 
       {/* sidebar child component starts  */}
-      <div className="w-[100%] md:w-[calc(100%-16rem)] pl-2 pt-1  ">
+      <div className="w-[100%] md:w-[calc(100%-16rem)]   ">
         <Outlet />
       </div>
 
