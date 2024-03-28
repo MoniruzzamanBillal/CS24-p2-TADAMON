@@ -1,7 +1,14 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import UserRoleBtn from "../../Component/SystemAdmiin/UserRoleBtn";
 
 const AddUser = () => {
+  const [userRole, setUserRole] = useState([]);
+  const [adminClick, setAdminCLick] = useState(false);
+  const [stsClick, setStsCLick] = useState(false);
+  const [landfilClick, setLandfilCLick] = useState(false);
+
   const navigate = useNavigate();
   const {
     register,
@@ -13,11 +20,20 @@ const AddUser = () => {
 
   //   function for adding user
   const handleAddUser = (data) => {
-    console.log("addn user ");
-
     const userName = data?.userName;
     const userPassword = data?.userPassword;
   };
+
+  // function for select user role
+  const handleUserRole = (role) => {
+    if (userRole.includes(role)) {
+      setUserRole(userRole.filter((r) => r !== role));
+    } else {
+      setUserRole([...userRole, role]);
+    }
+  };
+
+  console.log(userRole);
 
   return (
     <div className="addUserContainer   ">
@@ -96,18 +112,39 @@ const AddUser = () => {
             {/* retype new password ends  */}
 
             {/* user role section starts  */}
-            <div className="userRoleSection">
-              <select
-                id="userRole"
-                {...register("userRole", {
-                  required: "user role is required",
-                })}
-                className="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-md focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 outline-none "
-              >
-                <option value="">Select User Role</option>
-                <option value="stsManager">STS manager</option>
-                <option value="landfilManager">Landfil Manager</option>
-              </select>
+            <div className="userRoleSection flex flex-wrap items-center gap-x-8  ">
+              {/* user role button starts  */}
+              {/* admin role section starts  */}
+              <UserRoleBtn
+                roleClick={adminClick}
+                setRoleClick={setAdminCLick}
+                handleUserRole={handleUserRole}
+                value="admin"
+                title="Admin"
+              />
+              {/* admin role section ends  */}
+
+              {/* sts manager button starts  */}
+              <UserRoleBtn
+                roleClick={stsClick}
+                setRoleClick={setStsCLick}
+                handleUserRole={handleUserRole}
+                value="stsManager"
+                title="STS manager"
+              />
+              {/* sts manager button ends  */}
+
+              {/* landfil manager button starts  */}
+              <UserRoleBtn
+                roleClick={landfilClick}
+                setRoleClick={setLandfilCLick}
+                handleUserRole={handleUserRole}
+                value="landfilManager"
+                title="Landfil Manager"
+              />
+              {/* landfil manager button ends  */}
+
+              {/* user role button ends   */}
             </div>
             {/* user role section ends  */}
 
