@@ -9,8 +9,22 @@ import AddUser from "../Pages/System admin/AddUser";
 import AddStsEntry from "../Pages/STS manager/AddStsEntry";
 import AddLandfilEntry from "../Pages/Landfil Manager/AddLandfilEntry";
 import Test from "../Pages/Test";
+import RootPage from "./RootPage";
+import Home from "../Pages/Home";
+import ManageUser from "../Pages/System admin/ManageUser";
 
 export const Routes = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootPage />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+    ],
+  },
+
   {
     path: "/login",
     element: <Login />,
@@ -26,6 +40,10 @@ export const Routes = createBrowserRouter([
       {
         path: "/dashboard/test",
         element: <Test />,
+      },
+      {
+        path: "/dashboard/manageUser",
+        element: <ManageUser />,
       },
       {
         path: "/dashboard/adduser",

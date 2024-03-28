@@ -1,4 +1,4 @@
-const Test = () => {
+const AllUser = () => {
   return (
     <div className="allUserContainer">
       <div className="allUserWrapper">
@@ -52,4 +52,4 @@ const Test = () => {
   );
 };
 
-export default Test;
+export default AllUser;

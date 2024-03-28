@@ -18,3 +18,8 @@
 .react-datepicker-wrapper {
   display: block !important;
 }
+
+.btnClass {
+  padding: 0.5rem 1.4rem;
+  border-radius: 0.38rem;
+}

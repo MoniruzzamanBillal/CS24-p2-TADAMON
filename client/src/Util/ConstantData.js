@@ -1,5 +1,9 @@
 export const adminMenu = [
   {
+    title: "Manage users",
+    path: "/dashboard/manageUser",
+  },
+  {
     title: "Add User",
     path: "/dashboard/adduser",
   },
@@ -16,12 +20,15 @@ export const adminMenu = [
     path: "/dashboard/addLandfill",
   },
 ];
+
+//
 export const stsManagerMenu = [
   {
     title: "Add Entry",
     path: "/dashboard/sts/addEntry",
   },
 ];
+//
 
 export const landfilManagerMenu = [
   {

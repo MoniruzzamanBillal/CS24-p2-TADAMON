@@ -53,7 +53,7 @@ const Dashboard = () => {
             {/*  */}
 
             {/* Admin side links  */}
-            {/* {adminMenu &&
+            {adminMenu &&
               adminMenu.map((ele, ind) => (
                 <NavLink
                   to={ele.path}
@@ -64,7 +64,7 @@ const Dashboard = () => {
                     {ele.title}
                   </h1>
                 </NavLink>
-              ))} */}
+              ))}
             {/* admin side links ends  */}
 
             {/* sts manager menu starts  */}
@@ -83,7 +83,7 @@ const Dashboard = () => {
             {/* sts manager menu ends  */}
 
             {/* landfil manager menu starts  */}
-            {landfilManagerMenu &&
+            {/* {landfilManagerMenu &&
               landfilManagerMenu.map((ele, ind) => (
                 <NavLink
                   to={ele.path}
@@ -94,7 +94,7 @@ const Dashboard = () => {
                     {ele.title}
                   </h1>
                 </NavLink>
-              ))}
+              ))} */}
             {/* landfil manager menu ends  */}
 
             {/*  */}
