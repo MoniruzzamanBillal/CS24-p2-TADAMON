@@ -1,9 +1,12 @@
 const express = require("express");
-const { createUser, fetchUsers } = require("../controllers/user.controller.js");
+const { authMiddleware } = require("../controllers/auth.controller")
+const { createUser, fetchUsers, fetchUser, updateUser } = require("../controllers/user.controller.js");
 
 const router = express.Router();
 
-router.get("/", fetchUsers);
-router.post("/", createUser);
+router.get("/", authMiddleware, fetchUsers);
+router.get("/:userId", fetchUser);
+router.post("/", authMiddleware, createUser);
+router.put("/:userId", updateUser);
 
 module.exports = router;
