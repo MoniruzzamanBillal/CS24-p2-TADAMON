@@ -12,6 +12,7 @@ import Test from "../Pages/Test";
 import RootPage from "./RootPage";
 import Home from "../Pages/Home";
 import ManageUser from "../Pages/System admin/ManageUser";
+import ShowUsers from "../Pages/System admin/ShowUsers";
 
 export const Routes = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ export const Routes = createBrowserRouter([
       {
         path: "/dashboard/manageUser",
         element: <ManageUser />,
+      },
+      {
+        path: "/dashboard/showUser",
+        element: <ShowUsers />,
       },
       {
         path: "/dashboard/adduser",
