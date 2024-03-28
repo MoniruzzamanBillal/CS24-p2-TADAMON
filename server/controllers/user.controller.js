@@ -1,13 +1,15 @@
 const UserModel = require("../models/user.model");
 const { UserResponses } = require("../schemas/user.schema");
 
+const Responses = new UserResponses();
+
 async function createUser(req, res) {
 	// RBAC check:
 	if (!req.user.roles.includes("System Admin")) {
 		return res.status(403).send({ message: "Permission denied! Only admins can create users." });
 	}
 	
-	const { username, password, roles } = req.body;
+	const { username, password} = req.body;
 	
 	// check if username or password is null:
 	if (!username || !password) {
@@ -15,11 +17,7 @@ async function createUser(req, res) {
 	}
 	
 	try {
-		await UserModel.create({
-			username,
-			password,
-			roles: roles?.length ? roles : ["Unassigned"],
-		});
+		await UserModel.create(req.body);
 		return res.status(201).json({ message: `${req.body.username} Added!` });
 	}	catch (error) {
 		if (error.code == 11000) {
@@ -29,14 +27,51 @@ async function createUser(req, res) {
 	}
 }
 
-async function fetchUsers(_req, res) {
+async function fetchUsers(req, res) {
+	// RBAC check:
+	if (!req.user.roles.includes("System Admin")) {
+		return res.status(403).send({ message: "Permission denied! Only admins can create users." });
+	}
+	
 	try {
 		const users = await UserModel.find();
-		const response = users.map(user => UserResponses.default(user));
+		const response = users.map(user => Responses.default(user));
 		return res.status(200).json(response);
 	} catch (error) {
 		return res.status(404).send({ message: "Users Not Found!" });
 	}
 }
 
-module.exports = { createUser, fetchUsers };
+async function fetchUser(req, res) {
+	const { userId } = req.params;
+	
+	try {
+		const user = await UserModel.findOne({ _id: userId });
+		if (!user) {
+			return res.status(404).send({ message: "User not found!" });
+		}
+		return res.status(200).json(Responses.fetchOne(user));
+	} catch(error) {
+		return res.status(500).send({ message: "Fetch user failed with error!" });
+	}
+}
+
+async function updateUser(req, res) {
+	const { userId } = req.params;
+	
+	// check req body:
+	delete req.body?.roles;
+	delete req.body?.password;
+	
+	try {
+		const updatedUser = await UserModel.findByIdAndUpdate(userId, req.body, { new: true });
+		return res.status(200).json(Responses.updateOne(updatedUser));
+	} catch (error) {
+		if (error.code === 11000) {
+			return res.status(409).send({ message: `${req.body.username} Already Exists!` });
+		}
+		return res.status(500).send({ message: "Update user failed with error!" });
+	}
+}
+
+module.exports = { createUser, fetchUsers, fetchUser, updateUser };

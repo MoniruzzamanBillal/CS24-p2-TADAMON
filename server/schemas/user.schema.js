@@ -7,6 +7,14 @@ const UserSchema = new Schema({
 		unique: true,
 		required: true,
 	},
+	email: {
+		type: String,
+		required: true,
+	},
+	imgLink: {
+		type: String,
+		default: "",
+	},
 	password: {
 		type: String,
 		required: true,
@@ -26,12 +34,32 @@ UserSchema.pre('save', async function (next) {
 	next();
 });
 
-const UserResponses = {
-	default: (user) => ({
-		id: user._id,
-		username: user.username,
-		roles: user.roles,
-	}),
+class UserResponses {
+	constructor() {};
+	
+	default(user) {
+		return ({
+			id: user._id,
+			username: user.username,
+			email: user.email,
+			imgLink: user.imgLink,
+			roles: user.roles,
+		});
+	};
+	
+	fetchOne(user) {
+		return ({
+			id: user._id,
+			username: user.username,
+			email: user.email,
+			imgLink: user.imgLink,
+			roles: user.roles,
+		})
+	};
+	
+	updateOne(user) {
+		return this.fetchOne(user);
+	};
 };
 
 module.exports = { UserSchema, UserResponses };
