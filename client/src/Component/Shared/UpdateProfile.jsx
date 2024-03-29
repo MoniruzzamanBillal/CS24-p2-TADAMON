@@ -20,7 +20,7 @@ const UpdateProfile = () => {
   const [landfilClick, setLandfilCLick] = useState(false);
   const [userImage, setImage] = useState(null);
 
-  //   function for update  user
+  //   function for update  user note: admin  will use this
   const handleUpdateUser = async () => {
     const formData = new FormData();
     formData.append("image", userImage);
@@ -28,10 +28,7 @@ const UpdateProfile = () => {
       "https://api.imgbb.com/1/upload?key=00fc9e4302335a502d2035bb196a9314",
       formData
     );
-
     let imgUrl = imageResponse?.data?.data?.display_url;
-
-    //
 
     const updateData = {
       email,
@@ -39,11 +36,7 @@ const UpdateProfile = () => {
       imgLink: imgUrl,
       roles: userRole,
     };
-
-    // console.log(updateData);
-
     // /api/users/:userId
-
     axiosPublicUrl
       .put(`/api/users/${id}`, updateData)
       .then((response) => {
