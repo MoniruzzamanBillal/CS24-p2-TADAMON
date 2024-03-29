@@ -9,8 +9,27 @@ import AddUser from "../Pages/System admin/AddUser";
 import AddStsEntry from "../Pages/STS manager/AddStsEntry";
 import AddLandfilEntry from "../Pages/Landfil Manager/AddLandfilEntry";
 import Test from "../Pages/Test";
+import RootPage from "./RootPage";
+import Home from "../Pages/Home";
+import ManageUser from "../Pages/System admin/ManageUser";
+import ShowUsers from "../Pages/System admin/ShowUsers";
+import Statistics from "../Pages/Statistics";
+import WasteCollection from "../Component/Statistics/WasteCollection";
+import Transportation from "../Component/Statistics/Transportation";
+import FuelCost from "../Component/Statistics/FuelCost";
 
 export const Routes = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootPage />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+    ],
+  },
+
   {
     path: "/login",
     element: <Login />,
@@ -26,6 +45,30 @@ export const Routes = createBrowserRouter([
       {
         path: "/dashboard/test",
         element: <Test />,
+      },
+      {
+        path: "/dashboard/statistics",
+        element: <Statistics />,
+      },
+      {
+        path: "/dashboard/statistics/wasteCollection",
+        element: <WasteCollection />,
+      },
+      {
+        path: "/dashboard/statistics/transportaion",
+        element: <Transportation />,
+      },
+      {
+        path: "/dashboard/statistics/dailyFuelCost",
+        element: <FuelCost />,
+      },
+      {
+        path: "/dashboard/manageUser",
+        element: <ManageUser />,
+      },
+      {
+        path: "/dashboard/showUser",
+        element: <ShowUsers />,
       },
       {
         path: "/dashboard/adduser",

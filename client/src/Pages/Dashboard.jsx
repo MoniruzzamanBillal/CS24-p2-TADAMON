@@ -53,7 +53,7 @@ const Dashboard = () => {
             {/*  */}
 
             {/* Admin side links  */}
-            {/* {adminMenu &&
+            {adminMenu &&
               adminMenu.map((ele, ind) => (
                 <NavLink
                   to={ele.path}
@@ -64,7 +64,7 @@ const Dashboard = () => {
                     {ele.title}
                   </h1>
                 </NavLink>
-              ))} */}
+              ))}
             {/* admin side links ends  */}
 
             {/* sts manager menu starts  */}
@@ -83,18 +83,18 @@ const Dashboard = () => {
             {/* sts manager menu ends  */}
 
             {/* landfil manager menu starts  */}
-            {landfilManagerMenu &&
-              landfilManagerMenu.map((ele, ind) => (
-                <NavLink
-                  to={ele.path}
-                  key={ind}
-                  className={`flex rounded-md py-3 px-4 cursor-pointer bg-[#fff3] text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center  mb-3`}
-                >
-                  <h1 className={` gap-1  origin-left duration-200 w-full `}>
-                    {ele.title}
-                  </h1>
-                </NavLink>
-              ))}
+            {/* {landfilManagerMenu &&
+            landfilManagerMenu.map((ele, ind) => (
+              <NavLink
+                to={ele.path}
+                key={ind}
+                className={`flex rounded-md py-3 px-4 cursor-pointer bg-[#fff3] text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center  mb-3`}
+              >
+                <h1 className={` gap-1  origin-left duration-200 w-full `}>
+                  {ele.title}
+                </h1>
+              </NavLink>
+            ))} */}
             {/* landfil manager menu ends  */}
 
             {/*  */}
@@ -131,7 +131,7 @@ const Dashboard = () => {
       {/* hamburger emnu ends  */}
 
       {/* sidebar child component starts  */}
-      <div className="w-[100%] md:w-[calc(100%-16rem)] pl-2 pt-1  ">
+      <div className="w-[100%] md:w-[calc(100%-16rem)]   ">
         <Outlet />
       </div>
 

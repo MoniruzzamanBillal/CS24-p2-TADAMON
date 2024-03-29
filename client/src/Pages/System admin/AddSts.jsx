@@ -1,6 +1,19 @@
 import { useForm } from "react-hook-form";
+import TruckList from "../../Component/SystemAdmiin/TruckList";
+import { useState } from "react";
+
+const truckLists = [
+  { id: 0, name: "dump truck 1", reg: "12345678" },
+  { id: 1, name: "dump truck 2", reg: "123456456" },
+  { id: 2, name: "dump truck 3", reg: "123456dfgh456" },
+  { id: 3, name: "dump truck 4", reg: "12345dfg6456" },
+  { id: 4, name: "dump truck 5", reg: "12345sdf6456" },
+];
 
 const AddSts = () => {
+  const [showTruckList, setShowTruckList] = useState(false);
+  const [trucks, setTrucks] = useState([]);
+
   const {
     register,
     handleSubmit,
@@ -11,6 +24,7 @@ const AddSts = () => {
   // function for adding sts
   const handleStsAdd = (data) => {
     console.log("add sts click");
+    console.log(trucks);
 
     const stsWardNumber = data?.stsWardNo;
     const STSCapacity = data?.stsCapacity;
@@ -19,18 +33,25 @@ const AddSts = () => {
     console.log(STSCapacity);
   };
 
+  // function for adding trucks in "trucks" state
+  const handleAddTruck = (id, name) => {
+    let prevTrucks = [...trucks];
+    prevTrucks.push(name);
+    setTrucks(prevTrucks);
+  };
+
   return (
     <div className="addStsContainer">
       <div className="addStsWraper  bg-gray-100  h-screen  bgImage flex justify-center items-center  ">
         {/* add sts card starts  */}
-        <div className="addStsCard bg-white  shadow-2xl  py-9 px-4 w-[94%] xsm:w-[88%] sm:w-[81%] md:w-[76%] xmd:w-[68%] lg:w-[56%] rounded-md border border-gray-300 ">
+        <div className="addStsCard bg-white  shadow-2xl  py-9 px-4 w-[94%] xsm:w-[90%] sm:w-[88%] md:w-[86%] xmd:w-[78%] lg:w-[70%] rounded-md border border-gray-300 ">
           <h1 className="mb-4 text-xl font-bold text-center  xsm:text-2xl md:text-3xl sm:mb-6 md:mb-8 lg:mb-10">
             Add STS
           </h1>
 
           <form
             onSubmit={handleSubmit(handleStsAdd)}
-            className=" w-[92%] xsm:w-[80%] sm:w-[76%] md:w-[72%] m-auto flex flex-col gap-4 xsm:gap-5 sm:gap-6 md:gap-7 lg:gap-8  "
+            className="  w-[92%]  sm:w-[88%] md:w-[92%] xmd:w-[90%] lg:w-[84%] xl:w-[78%] m-auto flex flex-col gap-4 xsm:gap-5 sm:gap-6 md:gap-7 lg:gap-8  "
           >
             {/* Ward number input starts  */}
             <div className="STSwardinput">
@@ -40,7 +61,7 @@ const AddSts = () => {
                 {...register("stsWardNo", {
                   required: "STS ward Number is required",
                 })}
-                className={`block w-full m-auto  border bg-gray-50 border-gray-400     text-gray-900 text-sm rounded   p-2.5 outline-none`}
+                className={`  block w-full m-auto  border bg-gray-50 border-gray-400     text-gray-900 text-sm rounded   p-2.5 outline-none`}
                 placeholder="Enter STS Ward number"
               />
 
@@ -115,6 +136,53 @@ const AddSts = () => {
               {/* gps Longitude input ends  */}
             </div>
             {/* gps co ordinates input ends  */}
+
+            {/* add truck input section  starts  */}
+            <div className="addTructContainer  relative  ">
+              <h1
+                className="  text-lg cursor-pointer inline-block font-semibold  "
+                onClick={() => setShowTruckList(!showTruckList)}
+              >
+                Add truck +
+              </h1>
+
+              {/* truck lists section starts  */}
+
+              {showTruckList && (
+                <div
+                  className="truckLists absolute top-[1.7rem] left-[4rem] bg-gray-200 py-2 px-3 rounded shadow-md h-[16rem] overflow-auto  "
+                  onClick={() => setShowTruckList(!showTruckList)}
+                >
+                  {truckLists &&
+                    truckLists?.map((truck, ind) => (
+                      <TruckList
+                        key={ind}
+                        truck={truck}
+                        trucks={trucks}
+                        setTrucks={setTrucks}
+                        handleAddTruck={handleAddTruck}
+                      />
+                    ))}
+                </div>
+              )}
+              {/* truck lists section ends  */}
+
+              {/* selected truck lists starts  */}
+              <div className="selectedTruck  mt-2 ">
+                <h1 className=" font-medium mb-.5 ">selected trucks : </h1>
+                {trucks &&
+                  trucks?.map((selectedTruck, ind) => (
+                    <div className="selectedTrucks" key={ind}>
+                      <h1>
+                        <span className=" font-semibold "> {ind + 1}.</span>{" "}
+                        {selectedTruck}
+                      </h1>
+                    </div>
+                  ))}
+              </div>
+              {/* selected truck lists end s */}
+            </div>
+            {/* add truck input section ends   */}
 
             <button
               disabled={isSubmitting}

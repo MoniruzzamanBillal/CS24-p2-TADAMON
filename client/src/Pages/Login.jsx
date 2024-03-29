@@ -2,8 +2,14 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useState } from "react";
+import UseAxiosPublic from "../Hooks/UseAxiosPublic";
+import axios from "axios";
 
 const Login = () => {
+  const { axiosPublicUrl } = UseAxiosPublic();
+  const [captchaVal, setCaptchaVal] = useState(null);
   // hooks:
   const {
     register,
@@ -14,11 +20,20 @@ const Login = () => {
 
   //   functionality of login
   const handleLogin = (data) => {
-    const userEmail = data?.email;
-    const userPassword = data?.password;
+    const username = data?.name;
+    const password = data?.password;
 
-    console.log(userEmail);
-    console.log(userPassword);
+    const loginData = { username, password };
+
+    axiosPublicUrl
+      .post("/api/auth/login", loginData)
+      .then((response) => {
+        console.log(response?.data);
+      })
+      .catch((error) => console.log(error));
+
+    console.log(username);
+    console.log(password);
   };
 
   return (
@@ -33,25 +48,25 @@ const Login = () => {
             onSubmit={handleSubmit(handleLogin)}
             className=" w-[92%] xsm:w-[80%] sm:w-[76%] md:w-[72%] m-auto flex flex-col gap-4 xsm:gap-5 sm:gap-6 md:gap-7 lg:gap-8  "
           >
-            {/* email input  */}
-            <div className="emailInput">
+            {/* name input  */}
+            <div className="nameInput">
               <input
-                type="email"
-                id="email"
-                {...register("email", {
-                  required: "Email is required",
+                type="text"
+                id="name"
+                {...register("name", {
+                  required: "name is required",
                 })}
                 className={`block w-full m-auto  border bg-gray-50 border-gray-300     text-gray-900 text-sm rounded   p-2.5 outline-none`}
-                placeholder="Enter your email"
+                placeholder="Enter your name"
               />
 
-              {errors?.email && (
+              {errors?.name && (
                 <p className=" pt-1.5 text-red-600 font-semibold ">
-                  {errors?.email?.message}
+                  {errors?.name?.message}
                 </p>
               )}
             </div>
-            {/* email input  */}
+            {/* name input  */}
 
             {/* password input  */}
             <div className="passwordInput">
@@ -72,9 +87,19 @@ const Login = () => {
             </div>
             {/* password input  */}
 
+            {/* captcha starts  */}
+
+            <ReCAPTCHA
+              sitekey="6LfMN6gpAAAAAEiC5s_1p0I140aM4YRguzGOlD6d"
+              onChange={(val) => setCaptchaVal(val)}
+            />
+            {/* captcha ends */}
+
             <button
-              disabled={isSubmitting}
-              className="flex items-center justify-center w-full py-2 text-lg font-medium rounded  bg-sky-500 hover:bg-sky-600 text-gray-50"
+              disabled={isSubmitting || !captchaVal}
+              className={` ${
+                captchaVal ? " cursor-pointer " : " cursor-not-allowed "
+              }  flex items-center justify-center w-full py-2 text-lg font-medium rounded  bg-sky-500 hover:bg-sky-600 text-gray-50`}
             >
               {isSubmitting ? (
                 <div role="status">
@@ -101,15 +126,6 @@ const Login = () => {
               )}
             </button>
           </form>
-
-          <div className="mt-4 text-sm text-center registerDivert sm:text-base md:text-lg ">
-            <p>
-              Don't have an account ?{" "}
-              <span className="text-blue-500 logoFont">
-                <Link to={"/register"}>Register here</Link>{" "}
-              </span>
-            </p>
-          </div>
         </div>
       </div>
       <ToastContainer />
