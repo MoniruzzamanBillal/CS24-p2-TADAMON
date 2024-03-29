@@ -8,6 +8,7 @@ const cors = require("cors");
 // routers:
 const userRouter = require("./routers/user.router");
 const authRouter = require("./routers/auth.router");
+const profileRouter = require("./routers/profile.router");
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -29,6 +30,7 @@ app.get("/", async (req, res) => {
 });
 app.use("/api/users", userRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/profile", profileRouter);
 
 // start server:
 app.listen(PORT, () => {
