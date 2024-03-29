@@ -18,7 +18,8 @@ router.get("/", fetchUsers);
 router.get("/roles", fetchAvailableRoles);
 // router.get("/:userId", authMiddleware, fetchUser);
 router.get("/:userId", fetchUser);
-router.get("/:userId/roles", authMiddleware, fetchUserRoles);
+// router.get("/:userId/roles", authMiddleware, fetchUserRoles);
+router.get("/:userId/roles", fetchUserRoles);
 
 // add:
 // router.post("/", authMiddleware, createUser);

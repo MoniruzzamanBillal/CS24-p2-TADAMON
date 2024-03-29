@@ -4,18 +4,20 @@ import UserRoleBtn from "../../Component/SystemAdmiin/UserRoleBtn";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 import UseAxiosPrivate from "../../Hooks/UseAxiosPrivate";
 import GetAllUsers from "../../Hooks/GetAllUsers";
+import GetUserRole from "../../Hooks/GetUserRole";
 
 const ShowUsers = () => {
   const { axiosPublicUrl } = UseAxiosPublic();
   const { axiosPrivateUrl } = UseAxiosPrivate();
   const { users, usersLoading, usersDataRefetch } = GetAllUsers();
+  const { Role } = GetUserRole("66063e212070b46da989c2b9");
   const [userRole, setUserRole] = useState([]);
   const [adminClick, setAdminCLick] = useState(false);
   const [stsClick, setStsCLick] = useState(false);
   const [landfilClick, setLandfilCLick] = useState(false);
   const [allClick, setAllCLick] = useState(false);
 
-  console.log(users);
+  console.log(Role);
 
   // function for select user role
   const handleUserRole = (role) => {
