@@ -24,15 +24,15 @@ const Home = () => {
 
           {/* about card starts  */}
 
-          <AboutCard />
-          <AboutCard />
+          <AboutCard order1="order-last" order2="order-first" />
+          <AboutCard order1="order-first" order2="order-last" />
           {/* about card ends   */}
         </div>
         {/* about section  ends  */}
         {/* contact us section starts  */}
-        <div className="contactUs      ">
+        {/* <div className="contactUs      ">
           <ContactUs />
-        </div>
+        </div> */}
         {/* contact us section end s */}
       </div>
     </div>
