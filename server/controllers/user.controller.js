@@ -7,16 +7,13 @@ const Roles = ["System Admin", "STS Manager", "Landfill Manager"];
 // add user:
 async function createUser(req, res) {
   // RBAC check:
-  // if (!req.user || !req.user.roles.includes("System Admin")) {
-  //   return res
-  //     .status(403)
-  //     .send({ message: "Permission denied! Only admins can create users." });
-  // }
+  if (!req.user || !req.user.roles.includes("System Admin")) {
+    return res
+      .status(403)
+      .send({ message: "Permission denied! Only admins can create users." });
+  }
 
   const { username, password } = req.body;
-
-  // console.log("create user route : ");
-  // console.log(req.body);
 
   // check if username or password is null:
   if (!username || !password) {

@@ -28,12 +28,15 @@ const Login = () => {
     axiosPublicUrl
       .post("/api/auth/login", loginData)
       .then((response) => {
-        console.log(response?.data);
+        // console.log(response?.data);
+        const { token } = response?.data;
+        console.log(token);
+        localStorage.setItem("x-access-token", token);
       })
       .catch((error) => console.log(error));
 
-    console.log(username);
-    console.log(password);
+    // console.log(username);
+    // console.log(password);
   };
 
   return (

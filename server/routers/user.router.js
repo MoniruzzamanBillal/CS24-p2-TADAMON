@@ -22,8 +22,7 @@ router.get("/:userId", fetchUser);
 router.get("/:userId/roles", fetchUserRoles);
 
 // add:
-// router.post("/", authMiddleware, createUser);
-router.post("/", createUser);
+router.post("/", authMiddleware, createUser);
 
 // update: function for update a user
 router.put("/:userId", updateUser);
