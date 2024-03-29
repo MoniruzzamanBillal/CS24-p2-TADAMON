@@ -15,6 +15,9 @@ async function createUser(req, res) {
 
   const { username, password } = req.body;
 
+  console.log("create user route : ");
+  console.log(req.body);
+
   // check if username or password is null:
   if (!username || !password) {
     return res

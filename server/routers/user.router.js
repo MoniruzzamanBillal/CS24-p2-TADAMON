@@ -20,6 +20,7 @@ router.get("/:userId/roles", authMiddleware, fetchUserRoles);
 
 // add:
 router.post("/", authMiddleware, createUser);
+// router.post("/", createUser);
 
 // update:
 router.put("/:userId", updateUser);

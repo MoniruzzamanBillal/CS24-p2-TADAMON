@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import UserRoleBtn from "../../Component/SystemAdmiin/UserRoleBtn";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
+import UseAxiosPrivate from "../../Hooks/UseAxiosPrivate";
 
 const AddUser = () => {
   const { axiosPublicUrl } = UseAxiosPublic();
+  const { axiosPrivateUrl } = UseAxiosPrivate();
   const [userRole, setUserRole] = useState([]);
   const [adminClick, setAdminCLick] = useState(false);
   const [stsClick, setStsCLick] = useState(false);
@@ -26,9 +28,6 @@ const AddUser = () => {
     const userEmail = data?.userEmail;
     const userPassword = data?.userPassword;
 
-    // console.log(userName);
-    // console.log(userPassword);
-    // console.log(userRole);
     const userData = {
       email: userEmail,
       username: userName,
@@ -36,15 +35,11 @@ const AddUser = () => {
       roles: userRole,
     };
 
-    console.log(userEmail);
-    console.log(userName);
-    console.log(userPassword);
-    // console.log(userData);
-
-    axiosPublicUrl
+    // axiosPublicUrl
+    axiosPrivateUrl
       .post("/api/users", userData)
       .then((response) => {
-        console.log(response);
+        console.log(response?.data);
       })
       .catch((error) => console.log(error));
 
@@ -94,15 +89,15 @@ const AddUser = () => {
             {/*  user name input ends   */}
 
             {/* user email input starts  */}
-            <div className="userInputinput">
+            <div className="userEmailinput">
               <input
-                type="text"
+                type="email"
                 id="userEmail"
                 {...register("userEmail", {
                   required: "user email is required",
                 })}
                 className={`block w-full m-auto  border bg-gray-50 border-gray-400     text-gray-900 text-sm rounded   p-2.5 outline-none`}
-                placeholder="Enter user name"
+                placeholder="Enter user Email"
               />
 
               {errors?.userEmail && (
@@ -164,7 +159,7 @@ const AddUser = () => {
                 roleClick={adminClick}
                 setRoleClick={setAdminCLick}
                 handleUserRole={handleUserRole}
-                value="admin"
+                value="System Admin"
                 title="Admin"
               />
               {/* admin role section ends  */}
@@ -174,7 +169,7 @@ const AddUser = () => {
                 roleClick={stsClick}
                 setRoleClick={setStsCLick}
                 handleUserRole={handleUserRole}
-                value="stsManager"
+                value="STS Manager"
                 title="STS manager"
               />
               {/* sts manager button ends  */}
@@ -184,7 +179,7 @@ const AddUser = () => {
                 roleClick={landfilClick}
                 setRoleClick={setLandfilCLick}
                 handleUserRole={handleUserRole}
-                value="landfilManager"
+                value="Landfill Manager"
                 title="Landfil Manager"
               />
               {/* landfil manager button ends  */}
