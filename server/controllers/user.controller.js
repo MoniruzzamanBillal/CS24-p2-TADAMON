@@ -2,10 +2,16 @@ const UserModel = require("../models/user.model");
 const { UserResponses } = require("../schemas/user.schema");
 
 const Responses = new UserResponses();
+const Roles = [
+	"System Admin",
+	"STS Manager",
+	"Landfill Manager",
+];
 
+// add user:
 async function createUser(req, res) {
 	// RBAC check:
-	if (!req.user.roles.includes("System Admin")) {
+	if (!req.user || !req.user.roles.includes("System Admin")) {
 		return res.status(403).send({ message: "Permission denied! Only admins can create users." });
 	}
 	
@@ -27,9 +33,19 @@ async function createUser(req, res) {
 	}
 }
 
+// fetch available roles:
+async function fetchAvailableRoles(_req, res) {
+	try {
+		return res.status(200).json(Roles);
+	} catch {
+		return res.status(500).send({ message: "Fetch available roles failed with error!" });
+	}
+}
+
+// fetch all users:
 async function fetchUsers(req, res) {
 	// RBAC check:
-	if (!req.user.roles.includes("System Admin")) {
+	if (!req.user || !req.user.roles.includes("System Admin")) {
 		return res.status(403).send({ message: "Permission denied! Only admins can create users." });
 	}
 	
@@ -42,6 +58,7 @@ async function fetchUsers(req, res) {
 	}
 }
 
+// fetch user by id:
 async function fetchUser(req, res) {
 	const { userId } = req.params;
 	
@@ -56,6 +73,28 @@ async function fetchUser(req, res) {
 	}
 }
 
+// fetch user roles by id:
+async function fetchUserRoles(req, res) {
+	// RBAC check:
+	if (!req.user || !req.user.roles.includes("System Admin")) {
+		return res.status(403).send({ message: "Permission denied! Only admins can create users." });
+	}
+	
+	const { userId } = req.params;
+	
+	try {
+		const user = await UserModel.findOne({ _id: userId });
+		if (!user) {
+			return res.status(404).send({ message: "User not found!" });
+		}
+		return res.status(200).json(user.roles);
+	} catch(error) {
+		return res.status(500).send({ message: "Fetch user roles failed with error!" });
+	}
+}
+
+
+// update user by id:
 async function updateUser(req, res) {
 	const { userId } = req.params;
 	
@@ -74,4 +113,26 @@ async function updateUser(req, res) {
 	}
 }
 
-module.exports = { createUser, fetchUsers, fetchUser, updateUser };
+// delete user by id:
+async function deleteUser(req, res) {
+	// RBAC check:
+	if (!req.user || !req.user.roles.includes("System Admin")) {
+		return res.status(403).send({ message: "Permission denied! Only admins can create users." });
+	}
+	
+	const { userId } = req.params;
+	
+	try {
+		const user = await UserModel.findOne({ _id: userId });
+		if (!user) {
+			return res.status(404).send({ message: "User not found!" });
+		}
+		
+		await UserModel.deleteOne({ _id: userId });
+		return res.status(200).json({ message: `${user.username} removed!` });
+	}	catch(error) {
+		return res.status(500).send({ message: "Delete user failed with error!" });
+	}
+}
+
+module.exports = { createUser, fetchUsers, fetchUser, updateUser, deleteUser, fetchUserRoles, fetchAvailableRoles };
