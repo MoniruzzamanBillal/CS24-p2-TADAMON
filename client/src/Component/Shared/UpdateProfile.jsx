@@ -40,9 +40,9 @@ const UpdateProfile = () => {
       roles: userRole,
     };
 
-    console.log(updateData);
+    // console.log(updateData);
 
-    // /api/users /:userId
+    // /api/users/:userId
 
     axiosPublicUrl
       .put(`/api/users/${id}`, updateData)

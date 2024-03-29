@@ -3,16 +3,19 @@ import UserList from "../../Component/SystemAdmiin/UserList";
 import UserRoleBtn from "../../Component/SystemAdmiin/UserRoleBtn";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 import UseAxiosPrivate from "../../Hooks/UseAxiosPrivate";
+import GetAllUsers from "../../Hooks/GetAllUsers";
 
 const ShowUsers = () => {
   const { axiosPublicUrl } = UseAxiosPublic();
   const { axiosPrivateUrl } = UseAxiosPrivate();
-  const [users, setUsers] = useState([]);
+  const { users, usersLoading, usersDataRefetch } = GetAllUsers();
   const [userRole, setUserRole] = useState([]);
   const [adminClick, setAdminCLick] = useState(false);
   const [stsClick, setStsCLick] = useState(false);
   const [landfilClick, setLandfilCLick] = useState(false);
   const [allClick, setAllCLick] = useState(false);
+
+  console.log(users);
 
   // function for select user role
   const handleUserRole = (role) => {
@@ -24,15 +27,15 @@ const ShowUsers = () => {
   };
 
   // effect to get all users
-  useEffect(() => {
-    axiosPublicUrl
-      .get("/api/users")
-      .then((response) => {
-        // console.log(response?.data);
-        setUsers(response?.data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+  // useEffect(() => {
+  //   axiosPublicUrl
+  //     .get("/api/users")
+  //     .then((response) => {
+  //       // console.log(response?.data);
+  //       setUsers(response?.data);
+  //     })
+  //     .catch((error) => console.log(error));
+  // }, []);
 
   // console.log(users);
 
@@ -110,7 +113,12 @@ const ShowUsers = () => {
           <div className="userContainer   ">
             {users &&
               users?.map((user, ind) => (
-                <UserList user={user} ind={ind} key={ind} />
+                <UserList
+                  user={user}
+                  ind={ind}
+                  key={ind}
+                  usersDataRefetch={usersDataRefetch}
+                />
               ))}
           </div>
           {/* user container ends */}

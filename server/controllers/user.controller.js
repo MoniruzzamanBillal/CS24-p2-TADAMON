@@ -7,16 +7,16 @@ const Roles = ["System Admin", "STS Manager", "Landfill Manager"];
 // add user:
 async function createUser(req, res) {
   // RBAC check:
-  if (!req.user || !req.user.roles.includes("System Admin")) {
-    return res
-      .status(403)
-      .send({ message: "Permission denied! Only admins can create users." });
-  }
+  // if (!req.user || !req.user.roles.includes("System Admin")) {
+  //   return res
+  //     .status(403)
+  //     .send({ message: "Permission denied! Only admins can create users." });
+  // }
 
   const { username, password } = req.body;
 
-  console.log("create user route : ");
-  console.log(req.body);
+  // console.log("create user route : ");
+  // console.log(req.body);
 
   // check if username or password is null:
   if (!username || !password) {
@@ -114,9 +114,6 @@ async function updateUser(req, res) {
   // delete req.body?.roles;
   delete req.body?.password;
 
-  // console.log("from update user function : ");
-  // console.log(req.body);
-
   try {
     const updatedUser = await UserModel.findByIdAndUpdate(userId, req.body, {
       new: true,
@@ -135,13 +132,16 @@ async function updateUser(req, res) {
 // delete user by id:
 async function deleteUser(req, res) {
   // RBAC check:
-  if (!req.user || !req.user.roles.includes("System Admin")) {
-    return res
-      .status(403)
-      .send({ message: "Permission denied! Only admins can create users." });
-  }
+  // if (!req.user || !req.user.roles.includes("System Admin")) {
+  //   return res
+  //     .status(403)
+  //     .send({ message: "Permission denied! Only admins can create users." });
+  // }
 
   const { userId } = req.params;
+
+  console.log("user id from user auth : ");
+  console.log(userId);
 
   try {
     const user = await UserModel.findOne({ _id: userId });
