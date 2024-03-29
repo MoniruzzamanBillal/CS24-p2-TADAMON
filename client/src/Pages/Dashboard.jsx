@@ -46,10 +46,18 @@ const Dashboard = () => {
           <div className="middleListContainer  ">
             <Link
               to={"/"}
-              className={`flex rounded-md  py-3 px-4 cursor-pointer text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center  bg-[#fff3]`}
+              className={`flex rounded-md  mb-3 py-3 px-4 cursor-pointer text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center  bg-[#fff3]`}
             >
               <h1 className={` gap-1  origin-left duration-200 w-full `}>
                 Home
+              </h1>
+            </Link>
+            <Link
+              to={"/dashboard/profile/:id"}
+              className={`flex rounded-md  py-3 px-4 cursor-pointer text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center  bg-[#fff3]`}
+            >
+              <h1 className={` gap-1  origin-left duration-200 w-full `}>
+                Profile
               </h1>
             </Link>
 
