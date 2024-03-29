@@ -69,7 +69,7 @@ const UpdateProfile = () => {
     axiosPublicUrl
       .get(`/api/users/${id}`)
       .then((response) => {
-        // console.log(response?.data);
+        console.log(response?.data);
 
         const userData = response?.data;
         setemail(userData?.email);

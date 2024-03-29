@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Profile = () => {
   const { id } = useParams();
@@ -58,10 +58,13 @@ const Profile = () => {
                   {/* user role  */}
 
                   {/* update button  */}
-                  <div className="updateBtn">
-                    <button className=" mt-5 rounded hover:shadow font-semibold bg-gray-600 hover:bg-gray-700 dark:bg-gray-100 active:scale-[.99] py-2 w-full text-white dark:text-gray-900 ">
+                  <div className="updateBtn mt-8">
+                    <Link
+                      to={`/dashboard/update/profile/user/${id}`}
+                      className=" py-2 px-5 rounded hover:shadow font-semibold bg-gray-600 hover:bg-gray-700 dark:bg-gray-100 active:scale-[.99]  w-full text-white dark:text-gray-900 "
+                    >
                       Edit profile
-                    </button>
+                    </Link>
                   </div>
                   {/* update button  */}
 
