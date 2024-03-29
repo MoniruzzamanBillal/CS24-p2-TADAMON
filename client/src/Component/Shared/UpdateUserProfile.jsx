@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GetSingleUser from "../../Hooks/GetSingleUser";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 
 const UpdateUserProfile = () => {
-  const { user, userLoading, userDataRefetch } = GetSingleUser(
-    "6606a3418ab011404994b757"
-  );
-  const [email, setemail] = useState(user?.email || "");
-  const [username, setusername] = useState(user?.username || "");
-  const [userImage, setImage] = useState(null);
+  const { id } = useParams();
+  const { axiosPublicUrl } = UseAxiosPublic();
 
-  console.log(user);
+  const { user, userLoading, userDataRefetch } = GetSingleUser(id);
+  const [email, setemail] = useState("");
+  const [username, setusername] = useState("");
+  const [userImage, setImage] = useState(null);
 
   //   function for update  user note: admin  will use this
   const handleUpdateUser = async () => {
@@ -26,20 +27,26 @@ const UpdateUserProfile = () => {
       email,
       username,
       imgLink: imgUrl,
+      id: user?.id,
+      roles: user?.roles,
     };
 
-    console.log(updateData);
-    // /api/users/:userId
-    // axiosPublicUrl
-    //   .put(`/api/users/${id}`, updateData)
-    //   .then((response) => {
-    //     console.log(response?.data);
-    //     if (response?.data) {
-    //       alert("update complete !!! will show this with toast  ");
-    //     }
-    //   })
-    //   .catch((error) => console.log(error));
+    axiosPublicUrl
+      .put(`/api/profile`, updateData)
+      .then((response) => {
+        console.log(response?.data);
+        if (response?.data) {
+          alert("update complete !!! will show this with toast  ");
+        }
+      })
+      .catch((error) => console.log(error));
   };
+
+  // effect to set user info in state when data is fetched from hook
+  useEffect(() => {
+    setemail(user?.email);
+    setusername(user?.username);
+  }, [user, userLoading]);
 
   return (
     <div className="UpdateUserProfileContainer">
@@ -57,8 +64,8 @@ const UpdateUserProfile = () => {
               <input
                 type="text"
                 id="userName"
-                // value={username}
-                // onChange={(e) => setusername(e.target.value)}
+                value={username}
+                onChange={(e) => setusername(e.target.value)}
                 className={`block w-full m-auto  border bg-gray-50 border-gray-400     text-gray-900 text-sm rounded   p-2.5 outline-none`}
                 placeholder="Enter user name"
               />
@@ -70,8 +77,8 @@ const UpdateUserProfile = () => {
               <input
                 type="email"
                 id="userEmail"
-                // value={email}
-                // onChange={(e) => setemail(e.target.value)}
+                value={email}
+                onChange={(e) => setemail(e.target.value)}
                 className={`block w-full m-auto  border bg-gray-50 border-gray-400     text-gray-900 text-sm rounded   p-2.5 outline-none`}
                 placeholder="Enter user Email"
               />

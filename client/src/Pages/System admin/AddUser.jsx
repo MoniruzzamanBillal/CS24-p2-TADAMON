@@ -40,6 +40,13 @@ const AddUser = () => {
       .post("/api/users", userData)
       .then((response) => {
         console.log(response?.data);
+        if (response?.data) {
+          alert("User added !! will show message via toast ");
+          reset();
+          setAdminCLick(false);
+          setStsCLick(false);
+          setLandfilCLick(false);
+        }
       })
       .catch((error) => console.log(error));
 

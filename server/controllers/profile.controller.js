@@ -20,14 +20,18 @@ async function fetchProfile(req, res) {
 }
 
 async function updateProfile(req, res) {
-  const { user } = req;
+  const user = req.body;
+
+  // console.log("in profile route : ");
+  // console.log(user?.email);
+
   if (!user) {
     return res.status(403).send({ message: "User not logged in!" });
   }
 
   // check req body:
-  delete req.body?.roles;
-  delete req.body?.password;
+  delete user?.roles;
+  delete user?.password;
 
   try {
     const updatedUser = await UserModel.findByIdAndUpdate(user.id, req.body, {
