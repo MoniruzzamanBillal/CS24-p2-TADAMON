@@ -2,8 +2,11 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useState } from "react";
 
 const Login = () => {
+  const [captchaVal, setCaptchaVal] = useState(null);
   // hooks:
   const {
     register,
@@ -72,9 +75,19 @@ const Login = () => {
             </div>
             {/* password input  */}
 
+            {/* captcha starts  */}
+
+            <ReCAPTCHA
+              sitekey="6LfMN6gpAAAAAEiC5s_1p0I140aM4YRguzGOlD6d"
+              onChange={(val) => setCaptchaVal(val)}
+            />
+            {/* captcha ends */}
+
             <button
-              disabled={isSubmitting}
-              className="flex items-center justify-center w-full py-2 text-lg font-medium rounded  bg-sky-500 hover:bg-sky-600 text-gray-50"
+              disabled={isSubmitting || !captchaVal}
+              className={` ${
+                captchaVal ? " cursor-pointer " : " cursor-not-allowed "
+              }  flex items-center justify-center w-full py-2 text-lg font-medium rounded  bg-sky-500 hover:bg-sky-600 text-gray-50`}
             >
               {isSubmitting ? (
                 <div role="status">
