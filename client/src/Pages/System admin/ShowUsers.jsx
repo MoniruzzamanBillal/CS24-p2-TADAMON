@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserList from "../../Component/SystemAdmiin/UserList";
 import UserRoleBtn from "../../Component/SystemAdmiin/UserRoleBtn";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
+import UseAxiosPrivate from "../../Hooks/UseAxiosPrivate";
 
 const ShowUsers = () => {
+  const { axiosPublicUrl } = UseAxiosPublic();
+  const { axiosPrivateUrl } = UseAxiosPrivate();
+  const [users, setUsers] = useState([]);
   const [userRole, setUserRole] = useState([]);
   const [adminClick, setAdminCLick] = useState(false);
   const [stsClick, setStsCLick] = useState(false);
@@ -18,7 +23,18 @@ const ShowUsers = () => {
     }
   };
 
-  console.log(userRole);
+  // effect to get all users
+  useEffect(() => {
+    axiosPublicUrl
+      .get("/api/users")
+      .then((response) => {
+        // console.log(response?.data);
+        setUsers(response?.data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  // console.log(users);
 
   return (
     <div className="ShowUsersContainer">
@@ -92,7 +108,10 @@ const ShowUsers = () => {
 
           {/* user container starts */}
           <div className="userContainer   ">
-            <UserList />
+            {users &&
+              users?.map((user, ind) => (
+                <UserList user={user} ind={ind} key={ind} />
+              ))}
           </div>
           {/* user container ends */}
         </div>

@@ -17,6 +17,7 @@ import Statistics from "../Pages/Statistics";
 import WasteCollection from "../Component/Statistics/WasteCollection";
 import Transportation from "../Component/Statistics/Transportation";
 import FuelCost from "../Component/Statistics/FuelCost";
+import UpdateProfile from "../Component/Shared/UpdateProfile";
 
 export const Routes = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ export const Routes = createBrowserRouter([
       {
         path: "/dashboard/showUser",
         element: <ShowUsers />,
+      },
+      {
+        path: "/dashboard/profile/updateprofile/:id",
+        element: <UpdateProfile />,
       },
       {
         path: "/dashboard/adduser",

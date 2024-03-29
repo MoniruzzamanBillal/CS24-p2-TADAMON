@@ -13,9 +13,11 @@ const {
 const router = express.Router();
 
 // fetch:
-router.get("/", authMiddleware, fetchUsers);
+// router.get("/", authMiddleware, fetchUsers);
+router.get("/", fetchUsers);
 router.get("/roles", fetchAvailableRoles);
-router.get("/:userId", authMiddleware, fetchUser);
+// router.get("/:userId", authMiddleware, fetchUser);
+router.get("/:userId", fetchUser);
 router.get("/:userId/roles", authMiddleware, fetchUserRoles);
 
 // add:
