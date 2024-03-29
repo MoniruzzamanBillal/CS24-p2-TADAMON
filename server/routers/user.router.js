@@ -11,7 +11,8 @@ const router = express.Router();
 
 router.get("/", authMiddleware, fetchUsers);
 router.get("/:userId", fetchUser);
-router.post("/", authMiddleware, createUser);
+// router.post("/", authMiddleware, createUser);
+router.post("/", createUser);
 router.put("/:userId", updateUser);
 
 module.exports = router;

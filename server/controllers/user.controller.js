@@ -5,32 +5,41 @@ const Responses = new UserResponses();
 
 async function createUser(req, res) {
   // RBAC check:
-  if (!req.user.roles.includes("System Admin")) {
-    return res
-      .status(403)
-      .send({ message: "Permission denied! Only admins can create users." });
-  }
+  // if (!req.user.roles.includes("System Admin")) {
+  //   return res
+  //     .status(403)
+  //     .send({ message: "Permission denied! Only admins can create users." });
+  // }
 
-  const { username, password } = req.body;
+  const { username, password, roles } = req.body;
+
+  console.log("in user controller : ");
+
+  console.log(req.body);
+
+  // console.log(username);
+  // console.log(password);
 
   // check if username or password is null:
-  if (!username || !password) {
-    return res
-      .status(400)
-      .send({ message: "Please provide username & password!" });
-  }
+  // if (!username || !password) {
+  //   return res
+  //     .status(400)
+  //     .send({ message: "Please provide username & password!" });
+  // }
 
-  try {
-    await UserModel.create(req.body);
-    return res.status(201).json({ message: `${req.body.username} Added!` });
-  } catch (error) {
-    if (error.code == 11000) {
-      return res
-        .status(409)
-        .send({ message: `${req.body.username} Already Exists!` });
-    }
-    return res.status(500).send({ message: "User Creation Failed!" });
-  }
+  // try {
+  //   console.log("in try block 1");
+  //   await UserModel.create(req.body);
+  //   console.log("in try block 2 ");
+  //   return res.status(201).json({ message: `${req.body.username} Added!` });
+  // } catch (error) {
+  //   if (error.code == 11000) {
+  //     return res
+  //       .status(409)
+  //       .send({ message: `${req.body.username} Already Exists!` });
+  //   }
+  //   return res.status(500).send({ message: "User Creation Failed!" });
+  // }
 }
 
 // function for getting user

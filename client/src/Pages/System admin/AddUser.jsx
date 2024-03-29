@@ -2,8 +2,10 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import UserRoleBtn from "../../Component/SystemAdmiin/UserRoleBtn";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 
 const AddUser = () => {
+  const { axiosPublicUrl } = UseAxiosPublic();
   const [userRole, setUserRole] = useState([]);
   const [adminClick, setAdminCLick] = useState(false);
   const [stsClick, setStsCLick] = useState(false);
@@ -21,7 +23,32 @@ const AddUser = () => {
   //   function for adding user
   const handleAddUser = (data) => {
     const userName = data?.userName;
+    const userEmail = data?.userEmail;
     const userPassword = data?.userPassword;
+
+    // console.log(userName);
+    // console.log(userPassword);
+    // console.log(userRole);
+    const userData = {
+      email: userEmail,
+      username: userName,
+      password: userPassword,
+      roles: userRole,
+    };
+
+    console.log(userEmail);
+    console.log(userName);
+    console.log(userPassword);
+    // console.log(userData);
+
+    axiosPublicUrl
+      .post("/api/users", userData)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
+
+    //
   };
 
   // function for select user role
@@ -32,8 +59,6 @@ const AddUser = () => {
       setUserRole([...userRole, role]);
     }
   };
-
-  console.log(userRole);
 
   return (
     <div className="addUserContainer   ">
@@ -67,6 +92,26 @@ const AddUser = () => {
               )}
             </div>
             {/*  user name input ends   */}
+
+            {/* user email input starts  */}
+            <div className="userInputinput">
+              <input
+                type="text"
+                id="userEmail"
+                {...register("userEmail", {
+                  required: "user email is required",
+                })}
+                className={`block w-full m-auto  border bg-gray-50 border-gray-400     text-gray-900 text-sm rounded   p-2.5 outline-none`}
+                placeholder="Enter user name"
+              />
+
+              {errors?.userEmail && (
+                <p className=" pt-1.5 text-red-600 font-semibold ">
+                  {errors?.userEmail?.message}
+                </p>
+              )}
+            </div>
+            {/* user email input ends  */}
 
             {/* user password input starts  */}
             <div className="userPassword">
