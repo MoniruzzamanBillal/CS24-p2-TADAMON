@@ -1,6 +1,25 @@
+import { useState } from "react";
 import UserList from "../../Component/SystemAdmiin/UserList";
+import UserRoleBtn from "../../Component/SystemAdmiin/UserRoleBtn";
 
 const ShowUsers = () => {
+  const [userRole, setUserRole] = useState([]);
+  const [adminClick, setAdminCLick] = useState(false);
+  const [stsClick, setStsCLick] = useState(false);
+  const [landfilClick, setLandfilCLick] = useState(false);
+  const [allClick, setAllCLick] = useState(false);
+
+  // function for select user role
+  const handleUserRole = (role) => {
+    if (userRole.includes(role)) {
+      setUserRole(userRole.filter((r) => r !== role));
+    } else {
+      setUserRole([...userRole, role]);
+    }
+  };
+
+  console.log(userRole);
+
   return (
     <div className="ShowUsersContainer">
       <div className="ShowUsersWrapper w-[85%] py-8 m-auto flex flex-col gap-y-12 ">
@@ -21,46 +40,48 @@ const ShowUsers = () => {
 
           <div className="inputContainer  flex flex-wrap gap-x-8 ">
             {/* all users input starts  */}
-            <div className="allUserInput flex items-center gap-x-1   ">
-              <input
-                id="allUser"
-                type="radio"
-                value="allUser"
-                name="inline-radio-group"
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
-              />
 
-              <label htmlFor="allUser">All users</label>
-            </div>
+            <UserRoleBtn
+              roleClick={allClick}
+              setRoleClick={setAllCLick}
+              handleUserRole={handleUserRole}
+              value="allUser"
+              title="All users"
+            />
+
             {/* all users input ends  */}
 
-            {/* sts manager radio input starts  */}
-            <div className="stsManagerInout flex items-center gap-x-1  ">
-              <input
-                id="stsManager"
-                type="radio"
-                value="stsManager"
-                name="inline-radio-group"
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
-              />
+            {/* admin role section starts  */}
+            <UserRoleBtn
+              roleClick={adminClick}
+              setRoleClick={setAdminCLick}
+              handleUserRole={handleUserRole}
+              value="admin"
+              title="Admin"
+            />
+            {/* admin role section ends  */}
 
-              <label htmlFor="stsManager">Sts manager</label>
-            </div>
+            {/* sts manager radio input starts  */}
+            {/* sts manager button starts  */}
+            <UserRoleBtn
+              roleClick={stsClick}
+              setRoleClick={setStsCLick}
+              handleUserRole={handleUserRole}
+              value="stsManager"
+              title="STS manager"
+            />
+            {/* sts manager button ends  */}
             {/* sts manager radio input ends  */}
 
-            {/* landfil manager input starts  */}
-            <div className="landfilManagerInout  flex items-center gap-x-1  ">
-              <input
-                id="landfilManager"
-                type="radio"
-                value=""
-                name="inline-radio-group"
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
-              />
-
-              <label htmlFor="landfilManager">landfil manager</label>
-            </div>
-            {/* landfil manager input ends  */}
+            {/* landfil manager button starts  */}
+            <UserRoleBtn
+              roleClick={landfilClick}
+              setRoleClick={setLandfilCLick}
+              handleUserRole={handleUserRole}
+              value="landfilManager"
+              title="Landfil Manager"
+            />
+            {/* landfil manager button ends  */}
           </div>
         </div>
         {/* filter by roles ends  */}
