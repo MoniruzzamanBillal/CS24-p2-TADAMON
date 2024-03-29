@@ -1,6 +1,7 @@
 // importing libraries:
 import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import { IoLogOutOutline } from "react-icons/io5";
 
 // importing icons:
 import {
@@ -18,11 +19,11 @@ const Dashboard = () => {
       <div
         className={` SideBarContainer fixed top-0 ${
           isSidebarActive ? "left-[0%]" : "left-[-100%]"
-        } z-20  md:left-0 duration-200`}
+        } z-20  md:left-0 duration-200  `}
       >
-        <div className=" mainContainer relative w-64 h-screen p-5 pt-5 duration-300 bg-gray-600  sm:w-64">
+        <div className=" mainContainer relative w-64 h-screen p-5 pt-5 duration-300 bg-gray-600   sm:w-64  flex flex-col justify-between ">
           {/* top  container starts */}
-          <div className="mb-2 topContainer AccountContainer ">
+          <div className=" topContainer AccountContainer ">
             <div className="flex items-center space-x-4 ">
               <img
                 className="w-11 h-11 p-1 rounded-full cursor-pointer ring-2 ring-gray-300 dark:ring-gray-500"
@@ -40,35 +41,38 @@ const Dashboard = () => {
 
           {/* top  container ends */}
 
-          {/* bottom list items start  */}
+          {/* middle list items start  */}
 
-          <Link
-            to={"/"}
-            className={`flex rounded-md mt-10 py-3 px-4 cursor-pointer text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center  bg-[#fff3]`}
-          >
-            <h1 className={` gap-1  origin-left duration-200 w-full `}>Home</h1>
-          </Link>
+          <div className="middleListContainer  ">
+            <Link
+              to={"/"}
+              className={`flex rounded-md  py-3 px-4 cursor-pointer text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center  bg-[#fff3]`}
+            >
+              <h1 className={` gap-1  origin-left duration-200 w-full `}>
+                Home
+              </h1>
+            </Link>
 
-          <div className="mt-3 sidebarList">
-            {/*  */}
+            <div className="mt-3 sidebarList">
+              {/*  */}
 
-            {/* Admin side links  */}
-            {adminMenu &&
-              adminMenu.map((ele, ind) => (
-                <NavLink
-                  to={ele.path}
-                  key={ind}
-                  className={`flex rounded-md py-3 px-4 cursor-pointer bg-[#fff3] text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center  mb-3`}
-                >
-                  <h1 className={` gap-1  origin-left duration-200 w-full `}>
-                    {ele.title}
-                  </h1>
-                </NavLink>
-              ))}
-            {/* admin side links ends  */}
+              {/* Admin side links  */}
+              {adminMenu &&
+                adminMenu.map((ele, ind) => (
+                  <NavLink
+                    to={ele.path}
+                    key={ind}
+                    className={`flex rounded-md py-3 px-4 cursor-pointer bg-[#fff3] text-gray-300 hover:bg-gray-50 hover:text-gray-700 text-sm items-center  mb-3`}
+                  >
+                    <h1 className={` gap-1  origin-left duration-200 w-full `}>
+                      {ele.title}
+                    </h1>
+                  </NavLink>
+                ))}
+              {/* admin side links ends  */}
 
-            {/* sts manager menu starts  */}
-            {/* {stsManagerMenu &&
+              {/* sts manager menu starts  */}
+              {/* {stsManagerMenu &&
               stsManagerMenu.map((ele, ind) => (
                 <NavLink
                   to={ele.path}
@@ -80,10 +84,10 @@ const Dashboard = () => {
                   </h1>
                 </NavLink>
               ))} */}
-            {/* sts manager menu ends  */}
+              {/* sts manager menu ends  */}
 
-            {/* landfil manager menu starts  */}
-            {/* {landfilManagerMenu &&
+              {/* landfil manager menu starts  */}
+              {/* {landfilManagerMenu &&
             landfilManagerMenu.map((ele, ind) => (
               <NavLink
                 to={ele.path}
@@ -95,14 +99,22 @@ const Dashboard = () => {
                 </h1>
               </NavLink>
             ))} */}
-            {/* landfil manager menu ends  */}
+              {/* landfil manager menu ends  */}
 
-            {/*  */}
+              {/*  */}
+            </div>
           </div>
 
-          {/* bottom list items end  */}
+          {/* middle list items end  */}
 
-          {/* bottom list items end  */}
+          {/* bottom section starts  */}
+          <div className="bottomSection bg-red-500 hover:bg-red-600 py-1.5 rounded text-gray-50 font-medium  flex justify-center items-center  gap-x-2 cursor-pointer active:scale-95 duration-200  ">
+            <h1>Log out </h1>
+            <IoLogOutOutline />
+          </div>
+          {/* bottom section ends  */}
+
+          {/*  */}
         </div>
       </div>
       {/* sidebar container ends  */}
