@@ -111,8 +111,11 @@ async function updateUser(req, res) {
   const { userId } = req.params;
 
   // check req body:
-  delete req.body?.roles;
+  // delete req.body?.roles;
   delete req.body?.password;
+
+  // console.log("from update user function : ");
+  // console.log(req.body);
 
   try {
     const updatedUser = await UserModel.findByIdAndUpdate(userId, req.body, {

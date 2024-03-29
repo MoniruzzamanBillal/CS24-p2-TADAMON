@@ -24,7 +24,7 @@ router.get("/:userId/roles", authMiddleware, fetchUserRoles);
 router.post("/", authMiddleware, createUser);
 // router.post("/", createUser);
 
-// update:
+// update: function for update a user
 router.put("/:userId", updateUser);
 
 // delete:

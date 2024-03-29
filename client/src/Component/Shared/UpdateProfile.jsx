@@ -22,7 +22,6 @@ const UpdateProfile = () => {
 
   //   function for update  user
   const handleUpdateUser = async () => {
-    console.log("update");
     const formData = new FormData();
     formData.append("image", userImage);
     const imageResponse = await axios.post(
@@ -31,17 +30,29 @@ const UpdateProfile = () => {
     );
 
     let imgUrl = imageResponse?.data?.data?.display_url;
-    console.log(imgUrl);
+
     //
 
     const updateData = {
       email,
       username,
-      imgUrl,
-      userRole,
+      imgLink: imgUrl,
+      roles: userRole,
     };
 
     console.log(updateData);
+
+    // /api/users /:userId
+
+    axiosPublicUrl
+      .put(`/api/users/${id}`, updateData)
+      .then((response) => {
+        console.log(response?.data);
+        if (response?.data) {
+          alert("update complete !!! will show this with toast  ");
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   // function for select user role
@@ -84,6 +95,7 @@ const UpdateProfile = () => {
                 type="text"
                 id="userName"
                 value={username}
+                onChange={(e) => setusername(e.target.value)}
                 className={`block w-full m-auto  border bg-gray-50 border-gray-400     text-gray-900 text-sm rounded   p-2.5 outline-none`}
                 placeholder="Enter user name"
               />
@@ -96,6 +108,7 @@ const UpdateProfile = () => {
                 type="email"
                 id="userEmail"
                 value={email}
+                onChange={(e) => setemail(e.target.value)}
                 className={`block w-full m-auto  border bg-gray-50 border-gray-400     text-gray-900 text-sm rounded   p-2.5 outline-none`}
                 placeholder="Enter user Email"
               />
