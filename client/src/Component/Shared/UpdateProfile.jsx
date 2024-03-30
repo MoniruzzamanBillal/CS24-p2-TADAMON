@@ -59,7 +59,7 @@ const UpdateProfile = () => {
 
   //   effect to get the user based on id
   useEffect(() => {
-    axiosPublicUrl
+    axiosPrivateUrl
       .get(`/api/users/${id}`)
       .then((response) => {
         console.log(response?.data);

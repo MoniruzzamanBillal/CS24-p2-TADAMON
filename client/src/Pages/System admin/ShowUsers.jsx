@@ -17,8 +17,6 @@ const ShowUsers = () => {
   const [landfilClick, setLandfilCLick] = useState(false);
   const [allClick, setAllCLick] = useState(false);
 
-  console.log(Role);
-
   // function for select user role
   const handleUserRole = (role) => {
     if (userRole.includes(role)) {
@@ -38,8 +36,6 @@ const ShowUsers = () => {
   //     })
   //     .catch((error) => console.log(error));
   // }, []);
-
-  // console.log(users);
 
   return (
     <div className="ShowUsersContainer">

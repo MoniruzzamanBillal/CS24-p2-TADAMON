@@ -49,11 +49,11 @@ async function fetchAvailableRoles(_req, res) {
 // fetch all users:
 async function fetchUsers(req, res) {
   // RBAC check:
-  // if (!req.user || !req.user.roles.includes("System Admin")) {
-  //   return res
-  //     .status(403)
-  //     .send({ message: "Permission denied! Only admins can create users." });
-  // }
+  if (!req.user || !req.user.roles.includes("System Admin")) {
+    return res
+      .status(403)
+      .send({ message: "Permission denied! Only admins can create users." });
+  }
 
   try {
     const users = await UserModel.find();

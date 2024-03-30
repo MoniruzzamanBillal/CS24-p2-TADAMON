@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 
 const Profile = () => {
   const { id } = useParams();
-  console.log(id);
 
   return (
     <div className="ProfileContainer">

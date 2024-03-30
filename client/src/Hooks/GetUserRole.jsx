@@ -4,7 +4,7 @@ import UseAxiosPublic from "./UseAxiosPublic";
 
 const GetUserRole = (id) => {
   const { axiosPublicUrl } = UseAxiosPublic();
-  console.log(id);
+
   const {
     data: Role,
     isLoading: userRoleLoading,

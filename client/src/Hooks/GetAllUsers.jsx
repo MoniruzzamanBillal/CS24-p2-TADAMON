@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import UseAxiosPublic from "./UseAxiosPublic";
+import UseAxiosPrivate from "./UseAxiosPrivate";
 
 const GetAllUsers = () => {
   const { axiosPublicUrl } = UseAxiosPublic();
+  const { axiosPrivateUrl } = UseAxiosPrivate();
 
   const {
     data: users,
@@ -12,8 +14,7 @@ const GetAllUsers = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const response = await axiosPublicUrl.get("/api/users");
-
+      const response = await axiosPrivateUrl.get("/api/users");
       return response?.data;
     },
   });
