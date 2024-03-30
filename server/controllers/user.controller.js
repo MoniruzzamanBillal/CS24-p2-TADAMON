@@ -108,7 +108,7 @@ async function updateUser(req, res) {
   const { userId } = req.params;
 
   // check req body:
-  delete req.body?.roles;
+  // delete req.body?.roles;
   delete req.body?.password;
 
   try {
@@ -136,6 +136,9 @@ async function deleteUser(req, res) {
   }
 
   const { userId } = req.params;
+
+  console.log("user id from user auth : ");
+  console.log(userId);
 
   try {
     const user = await UserModel.findOne({ _id: userId });

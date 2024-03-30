@@ -21,10 +21,9 @@ router.get("/:userId/roles", authMiddleware, fetchUserRoles);
 // add:
 router.post("/", authMiddleware, createUser);
 
-// update:
+// update: function for update a user
 router.put("/:userId", updateUser);
 
 // delete:
 router.delete("/:userId", authMiddleware, deleteUser);
-
 module.exports = router;

@@ -94,6 +94,7 @@ const AddVehical = () => {
                 <option value="3">3 ton</option>
                 <option value="5">5 ton</option>
                 <option value="7">7 ton</option>
+                <option value="15">15 ton</option>
               </select>
 
               {errors?.vehicalCapacity && (

@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserList from "../../Component/SystemAdmiin/UserList";
 import UserRoleBtn from "../../Component/SystemAdmiin/UserRoleBtn";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
+import UseAxiosPrivate from "../../Hooks/UseAxiosPrivate";
+import GetAllUsers from "../../Hooks/GetAllUsers";
+import GetUserRole from "../../Hooks/GetUserRole";
 
 const ShowUsers = () => {
+  const { axiosPublicUrl } = UseAxiosPublic();
+  const { axiosPrivateUrl } = UseAxiosPrivate();
+  const { users, usersLoading, usersDataRefetch } = GetAllUsers();
+  const { Role } = GetUserRole("66063e212070b46da989c2b9");
   const [userRole, setUserRole] = useState([]);
   const [adminClick, setAdminCLick] = useState(false);
   const [stsClick, setStsCLick] = useState(false);
@@ -17,8 +25,6 @@ const ShowUsers = () => {
       setUserRole([...userRole, role]);
     }
   };
-
-  console.log(userRole);
 
   return (
     <div className="ShowUsersContainer">
@@ -92,7 +98,15 @@ const ShowUsers = () => {
 
           {/* user container starts */}
           <div className="userContainer   ">
-            <UserList />
+            {users &&
+              users?.map((user, ind) => (
+                <UserList
+                  user={user}
+                  ind={ind}
+                  key={ind}
+                  usersDataRefetch={usersDataRefetch}
+                />
+              ))}
           </div>
           {/* user container ends */}
         </div>
