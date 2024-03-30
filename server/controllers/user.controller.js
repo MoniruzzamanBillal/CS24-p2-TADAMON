@@ -82,11 +82,11 @@ async function fetchUser(req, res) {
 // fetch user roles by id:
 async function fetchUserRoles(req, res) {
   // RBAC check:
-  // if (!req.user || !req.user.roles.includes("System Admin")) {
-  //   return res
-  //     .status(403)
-  //     .send({ message: "Permission denied! Only admins can create users." });
-  // }
+  if (!req.user || !req.user.roles.includes("System Admin")) {
+    return res
+      .status(403)
+      .send({ message: "Permission denied! Only admins can create users." });
+  }
 
   const { userId } = req.params;
 
@@ -129,11 +129,11 @@ async function updateUser(req, res) {
 // delete user by id:
 async function deleteUser(req, res) {
   // RBAC check:
-  // if (!req.user || !req.user.roles.includes("System Admin")) {
-  //   return res
-  //     .status(403)
-  //     .send({ message: "Permission denied! Only admins can create users." });
-  // }
+  if (!req.user || !req.user.roles.includes("System Admin")) {
+    return res
+      .status(403)
+      .send({ message: "Permission denied! Only admins can create users." });
+  }
 
   const { userId } = req.params;
 

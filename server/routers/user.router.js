@@ -16,8 +16,7 @@ const router = express.Router();
 router.get("/", authMiddleware, fetchUsers);
 router.get("/roles", fetchAvailableRoles);
 router.get("/:userId", authMiddleware, fetchUser);
-// router.get("/:userId/roles", authMiddleware, fetchUserRoles);
-router.get("/:userId/roles", fetchUserRoles);
+router.get("/:userId/roles", authMiddleware, fetchUserRoles);
 
 // add:
 router.post("/", authMiddleware, createUser);
@@ -26,7 +25,5 @@ router.post("/", authMiddleware, createUser);
 router.put("/:userId", updateUser);
 
 // delete:
-// router.delete("/:userId", authMiddleware, deleteUser);
-router.delete("/:userId", deleteUser);
-
+router.delete("/:userId", authMiddleware, deleteUser);
 module.exports = router;

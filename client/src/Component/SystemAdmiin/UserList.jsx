@@ -15,14 +15,14 @@ const UserList = ({ user, ind, usersDataRefetch }) => {
 
   // fucntion for deleting the user
   const handleDelete = (id) => {
-    // setShowModal(!showModal);
-
-    axiosPublicUrl
+    axiosPrivateUrl
       .delete(`/api/users/${id}`)
       .then((response) => {
-        console.log(response?.data);
+        // console.log(response?.data);
+
         if (response?.data) {
           usersDataRefetch();
+          setShowModal(!showModal);
           alert("delete complete !!! will show this with toast  ");
         }
       })

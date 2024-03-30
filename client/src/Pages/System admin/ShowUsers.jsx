@@ -26,17 +26,6 @@ const ShowUsers = () => {
     }
   };
 
-  // effect to get all users
-  // useEffect(() => {
-  //   axiosPublicUrl
-  //     .get("/api/users")
-  //     .then((response) => {
-  //       // console.log(response?.data);
-  //       setUsers(response?.data);
-  //     })
-  //     .catch((error) => console.log(error));
-  // }, []);
-
   return (
     <div className="ShowUsersContainer">
       <div className="ShowUsersWrapper w-[85%] py-8 m-auto flex flex-col gap-y-12 ">

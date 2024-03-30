@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import UseAxiosPublic from "./UseAxiosPublic";
+
+import UseAxiosPrivate from "./UseAxiosPrivate";
 
 const GetUserRole = (id) => {
-  const { axiosPublicUrl } = UseAxiosPublic();
+  const { axiosPrivateUrl } = UseAxiosPrivate();
 
   const {
     data: Role,
@@ -12,7 +13,7 @@ const GetUserRole = (id) => {
   } = useQuery({
     queryKey: ["userRole"],
     queryFn: async () => {
-      const response = await axiosPublicUrl.get(`/api/users/${id}/roles`);
+      const response = await axiosPrivateUrl.get(`/api/users/${id}/roles`);
 
       return response?.data;
     },
